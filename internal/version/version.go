@@ -6,13 +6,14 @@ import (
 )
 
 var (
-	version = "v0.0.1"
+	version = "v3.0.0"
 
 	metadata     = ""
 	gitCommit    = ""
 	gitTreeState = ""
 )
 
+// BuildInfo basic structure with compilation data
 type BuildInfo struct {
 	// Version is the current semver.
 	Version string `json:"version,omitempty"`
@@ -24,6 +25,7 @@ type BuildInfo struct {
 	GoVersion string `json:"go_version,omitempty"`
 }
 
+// GetVersion returning version of boss
 func GetVersion() string {
 	if metadata == "" {
 		return version
@@ -43,5 +45,6 @@ func Get() BuildInfo {
 	if flag.Lookup("test.v") != nil {
 		v.GoVersion = ""
 	}
+
 	return v
 }

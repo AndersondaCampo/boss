@@ -16,8 +16,10 @@ var (
 	}
 )
 
+// NewCmdCompletion complete the typed command
 func NewCmdCompletion() *cobra.Command {
 	shells := []string{}
+
 	for s := range completionShells {
 		shells = append(shells, s)
 	}
@@ -46,18 +48,17 @@ func runCompletion(out io.Writer, cmd *cobra.Command, args []string) error {
 	if !found {
 		return util.UsageErrorf(cmd, "Unsupported shell type %q.", args[0])
 	}
-
 	return run(out, cmd.Parent())
 }
 
-func runCompletionBash(out io.Writer, kafta *cobra.Command) error {
-	return kafta.GenBashCompletion(out)
+func runCompletionBash(out io.Writer, boss *cobra.Command) error {
+	return boss.GenBashCompletion(out)
 }
 
-func runCompletionZsh(out io.Writer, kafta *cobra.Command) error {
-	return kafta.GenZshCompletion(out)
+func runCompletionZsh(out io.Writer, boss *cobra.Command) error {
+	return boss.GenZshCompletion(out)
 }
 
-func runCompletionPowerShell(out io.Writer, kafta *cobra.Command) error {
-	return kafta.GenPowerShellCompletion(out)
+func runCompletionPowerShell(out io.Writer, boss *cobra.Command) error {
+	return boss.GenPowerShellCompletion(out)
 }
