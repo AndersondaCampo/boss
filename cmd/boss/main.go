@@ -12,7 +12,7 @@ import (
 func main() {
 	baseName := filepath.Base(os.Args[0])
 
-	err := boss.NewBossCommand(baseName).Execute()
+	err := boss.InitializeBossCommandLine(baseName).Execute()
 	if err != nil {
 		if err != context.Canceled {
 			log.Fatalf("An error occurred: %s\n", err)

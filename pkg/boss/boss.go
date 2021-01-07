@@ -7,7 +7,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewBossCommand(name string) *cobra.Command {
+// InitializeBossCommandLine  initialize the boss command line
+func InitializeBossCommandLine(name string) *cobra.Command {
 
 	config := configuration.InitializeConfiguration(name)
 
@@ -20,8 +21,17 @@ func NewBossCommand(name string) *cobra.Command {
 
 	config.BindFlags(root)
 
-	root.AddCommand(version.NewCmdVersion(config))
+	// root.AddCommand(bug.NewCmdBug())
 	root.AddCommand(completion.NewCmdCompletion())
+	// root.AddCommand(dependencie.NewCmdDependencie())
+	// root.AddCommand(initalize.NewCmdInit())
+	// root.AddCommand(install.NewCmdInstall())
+	// root.AddCommand(login.NewCmdLogin())
+	// root.AddCommand(owner.NewCmdOwner())
+	// root.AddCommand(uninstall.NewCmdUnstall())
+	// root.AddCommand(update.NewCmdUpdate())
+	// root.AddCommand(upgrade.NewCmdUpgrade())
+	root.AddCommand(version.NewCmdVersion(config))
 
 	return root
 }

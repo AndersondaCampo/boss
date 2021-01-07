@@ -8,6 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// NewCmdVersion add the command line version
 func NewCmdVersion(config *configuration.Configuration) *cobra.Command {
 	return &cobra.Command{
 		Use:     "version",
@@ -21,8 +22,8 @@ func NewCmdVersion(config *configuration.Configuration) *cobra.Command {
 
 func printVersion() {
 	v := version.Get()
-	fmt.Println("Version        ", v.Version)
-	fmt.Println("Git commit     ", v.GitCommit)
-	fmt.Println("Git tree state ", v.GitTreeState)
-	fmt.Println("Go version     ", v.GoVersion)
+	fmt.Println("Version:", v.Version)
+	fmt.Println("Git commit:", v.GitCommit)
+	fmt.Println("Git tree state:", v.GitTreeState)
+	fmt.Println("Go version:", v.GoVersion)
 }
