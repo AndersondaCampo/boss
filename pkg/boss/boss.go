@@ -8,7 +8,10 @@ import (
 	"github.com/hashload/boss/pkg/cli/initialize"
 	"github.com/hashload/boss/pkg/cli/install"
 	"github.com/hashload/boss/pkg/cli/login"
+	"github.com/hashload/boss/pkg/cli/logout"
+	"github.com/hashload/boss/pkg/cli/outdated"
 	"github.com/hashload/boss/pkg/cli/owner"
+	"github.com/hashload/boss/pkg/cli/repo"
 	"github.com/hashload/boss/pkg/cli/uninstall"
 	"github.com/hashload/boss/pkg/cli/update"
 	"github.com/hashload/boss/pkg/cli/upgrade"
@@ -36,7 +39,10 @@ func InitializeBossCommandLine(name string) *cobra.Command {
 	root.AddCommand(initialize.NewCmdInitialize())
 	root.AddCommand(install.NewCmdInstall())
 	root.AddCommand(login.NewCmdLogin())
+	root.AddCommand(logout.NewCmdLogout())
+	root.AddCommand(outdated.NewCmdOutdated())
 	root.AddCommand(owner.NewCmdOwner())
+	root.AddCommand(repo.NewCmdRepo())
 	root.AddCommand(uninstall.NewCmdUnstall())
 	root.AddCommand(update.NewCmdUpdate())
 	root.AddCommand(upgrade.NewCmdUpgrade())

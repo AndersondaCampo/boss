@@ -14,6 +14,8 @@ func NewCmdVersion(config *configuration.Configuration) *cobra.Command {
 		Use:     "version",
 		Short:   fmt.Sprintf("Print the %s version", config.AppName),
 		Aliases: []string{"v"},
+		Example: `  Print version:
+  boss version`,
 		Run: func(cmd *cobra.Command, args []string) {
 			printVersion()
 		},

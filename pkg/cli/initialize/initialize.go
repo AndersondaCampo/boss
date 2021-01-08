@@ -6,28 +6,27 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var quiet bool
-var cmd = &cobra.Command{
-	Use:   "init",
-	Short: "Initialize a new project",
-	Long:  "Initialize a new project and creates a boss.json file",
-	Example: `  Initialize a new project:
+// NewCmdInitialize add the command line init
+func NewCmdInitialize() *cobra.Command {
+	var quiet bool
+	cmd := &cobra.Command{
+		Use:   "init",
+		Short: "Initialize a new project",
+		Long:  "Initialize a new project and creates a boss.json file",
+		Example: `  Initialize a new project:
   boss init
 
   Initialize a new project without having it ask any questions:
-  boss init -q`,
-	Run: func(cmd *cobra.Command, args []string) {
-		initializeBoss()
-	},
-}
-
-// NewCmdInitialize add the command line init
-func NewCmdInitialize() *cobra.Command {
+  boss init --quiet`,
+		Run: func(cmd *cobra.Command, args []string) {
+			initializeBoss(&quiet)
+		},
+	}
 	cmd.Flags().BoolVarP(&quiet, "quiet", "q", false, "without asking questions")
 	return cmd
 }
 
-func initializeBoss() {
+func initializeBoss(quiet *bool) {
 	printHead()
 }
 

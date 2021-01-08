@@ -8,7 +8,10 @@ import (
 func NewCmdLogin() *cobra.Command {
 	return &cobra.Command{
 		Use:   "login",
-		Short: "Register login",
+		Short: "Add a registry user account",
+		Example: `  Adding a new user account:
+  boss login <repo>`,
+		Aliases: []string{"adduser", "add-user"},
 		Run: func(cmd *cobra.Command, args []string) {
 			login()
 		},
