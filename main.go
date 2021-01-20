@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/hashload/boss/pkg/boss"
+	boss "github.com/hashload/boss/pkg/cli"
 )
 
 func main() {

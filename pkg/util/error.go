@@ -39,13 +39,11 @@ func checkErr(err error, handleErr func(string, int)) {
 	if err == nil {
 		return
 	}
-
 	msg := err.Error()
 	if !strings.HasPrefix(msg, "error: ") {
 		msg = fmt.Sprintf("error: %s", msg)
 	}
 	handleErr(msg, DefaultErrorExitCode)
-
 }
 
 func HelpErrorf(cmd *cobra.Command, format string, args ...interface{}) error {
