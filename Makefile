@@ -44,7 +44,7 @@ LDFLAGS += -X github.com/hashload/boss/internal/version.gitCommit=${GIT_COMMIT}
 LDFLAGS += -X github.com/hashload/boss/internal/version.gitTreeState=${GIT_DIRTY}
 .PHONY: all
 run:
-	@GO111MODULE=on go run ./cmd/boss $(word 2, $(MAKECMDGOALS) )
+	@GO111MODULE=on go run . $(word 2, $(MAKECMDGOALS) )
 
 .PHONY: all
 all: build
@@ -52,13 +52,13 @@ all: build
 
 .PHONY: install
 install:
-	cd ./cmd/boss && go install .
+	cd . && go install .
 
 .PHONY: build
 build: $(BINDIR)/$(BINNAME)
 
 $(BINDIR)/$(BINNAME): $(SRC)
-	GO111MODULE=on go build $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $(BINDIR)/$(BINNAME) ./cmd/boss
+	GO111MODULE=on go build $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $(BINDIR)/$(BINNAME) .
 
 .PHONY: test
 test: build
@@ -102,7 +102,7 @@ $(GOIMPORTS):
 .PHONY: build-cross
 build-cross: LDFLAGS += -extldflags "-static"
 build-cross: $(GOX)
-	GO111MODULE=on CGO_ENABLED=0 $(GOX) -parallel=4 -output="_dist/{{.OS}}-{{.Arch}}/$(BINNAME)" -osarch='$(TARGETS)' $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' ./cmd/boss
+	GO111MODULE=on CGO_ENABLED=0 $(GOX) -parallel=4 -output="_dist/{{.OS}}-{{.Arch}}/$(BINNAME)" -osarch='$(TARGETS)' $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' .
 
 .PHONY: dist
 dist: build-cross

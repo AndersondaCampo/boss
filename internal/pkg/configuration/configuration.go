@@ -6,7 +6,8 @@ import (
 
 // Configuration is the struct of boss configuration
 type Configuration struct {
-	Global    bool
+	Global bool
+
 	DebugMode bool
 	AppName   string
 }

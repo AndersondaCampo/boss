@@ -3,11 +3,14 @@ package initialize
 import (
 	"fmt"
 
+	"github.com/hashload/boss/internal/pkg/configuration"
+	"github.com/hashload/boss/internal/pkg/initialize"
+	"github.com/hashload/boss/pkg/util"
 	"github.com/spf13/cobra"
 )
 
 // NewCmdInitialize add the command line init
-func NewCmdInitialize() *cobra.Command {
+func NewCmdInitialize(config *configuration.Configuration) *cobra.Command {
 	var quiet bool
 	cmd := &cobra.Command{
 		Use:   "init",
@@ -19,15 +22,19 @@ func NewCmdInitialize() *cobra.Command {
   Initialize a new project without having it ask any questions:
   boss init --quiet`,
 		Run: func(cmd *cobra.Command, args []string) {
-			initializeBoss(&quiet)
+			initializeBoss(config, quiet)
 		},
 	}
 	cmd.Flags().BoolVarP(&quiet, "quiet", "q", false, "without asking questions")
 	return cmd
 }
 
-func initializeBoss(quiet *bool) {
-	printHead()
+func initializeBoss(config *configuration.Configuration, quiet bool) {
+	if !quiet {
+		printHead()
+	}
+	err := initialize.InitalizePackage(config, quiet)
+	util.CheckErr(err)
 }
 
 func printHead() {
