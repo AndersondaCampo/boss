@@ -1,6 +1,7 @@
 package initialize
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -10,6 +11,7 @@ import (
 	"github.com/hashload/boss/internal/pkg/ui"
 )
 
+// InitalizePackage initialize a boss.json
 func InitalizePackage(config *configuration.Configuration, quiet bool) error {
 	folderName := ""
 	wd, err := config.CurrentDir()
@@ -36,6 +38,7 @@ func InitalizePackage(config *configuration.Configuration, quiet bool) error {
 		pkg.Version = "1.0.0"
 		pkg.MainSrc = "./"
 	} else {
+		printHead()
 		pkg.Name = ui.GetTextOrDef("Package name", folderName)
 		pkg.Homepage = ui.GetTextOrDef("homepage", "")
 		pkg.Version = ui.GetTextOrDef("version: (1.0.0)", "1.0.0")
@@ -44,4 +47,14 @@ func InitalizePackage(config *configuration.Configuration, quiet bool) error {
 	}
 
 	return pkg.SaveToFile(finalFile)
+}
+
+func printHead() {
+	fmt.Println(`
+This utility will walk you through creating a boss.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+Use 'boss install <pkg>' afterwards to install a package and
+save it as a dependency in the boss.json file.
+Press ^C at any time to quit.`)
 }

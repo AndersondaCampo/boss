@@ -14,7 +14,7 @@ func GetTextOrDef(question string, def string) string {
 	}
 
 	result, err := prompt.Run()
-	if err != nil || result == "" {
+	if err != nil {
 		if err.Error() == "^C" {
 			os.Exit(1)
 		}
@@ -50,7 +50,6 @@ func GetPassword(question string, required bool) (string, error) {
 		},
 	}
 	return prompt.Run()
-
 }
 
 func GetConfirmation(question string, def bool) (bool, error) {
@@ -65,5 +64,4 @@ func GetConfirmation(question string, def bool) (bool, error) {
 	}
 
 	return result == "y", err
-
 }

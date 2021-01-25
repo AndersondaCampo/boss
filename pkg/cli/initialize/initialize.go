@@ -1,8 +1,6 @@
 package initialize
 
 import (
-	"fmt"
-
 	"github.com/hashload/boss/internal/pkg/configuration"
 	"github.com/hashload/boss/internal/pkg/initialize"
 	"github.com/hashload/boss/pkg/util"
@@ -30,19 +28,6 @@ func NewCmdInitialize(config *configuration.Configuration) *cobra.Command {
 }
 
 func initializeBoss(config *configuration.Configuration, quiet bool) {
-	if !quiet {
-		printHead()
-	}
 	err := initialize.InitalizePackage(config, quiet)
 	util.CheckErr(err)
-}
-
-func printHead() {
-	fmt.Println(`
-This utility will walk you through creating a boss.json file.
-It only covers the most common items, and tries to guess sensible defaults.
-
-Use 'boss install <pkg>' afterwards to install a package and
-save it as a dependency in the boss.json file.
-Press ^C at any time to quit.`)
 }
