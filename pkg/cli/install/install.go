@@ -1,7 +1,10 @@
 package install
 
 import (
+	"path/filepath"
+
 	"github.com/hashload/boss/internal/pkg/configuration"
+	"github.com/hashload/boss/internal/pkg/models"
 	"github.com/hashload/boss/pkg/util"
 	"github.com/spf13/cobra"
 )
@@ -31,5 +34,14 @@ func NewCmdInstall(config *configuration.Configuration) *cobra.Command {
 }
 
 func installDependency(config *configuration.Configuration, noSave bool) error {
+	currentDir, err := config.CurrentDir()
+	if err != nil {
+		return err
+	}
+	bossJSON := filepath.Join(currentDir, "boss.json")
+	_, err = models.LoadPackage(bossJSON)
+	if err != nil {
+		return err
+	}
 	return nil
 }

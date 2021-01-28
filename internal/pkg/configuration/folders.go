@@ -7,24 +7,18 @@ import (
 	"github.com/mitchellh/go-homedir"
 )
 
+// CurrentDir return a current dir
 func (c *Configuration) CurrentDir() (string, error) {
-	if !c.Global {
-		return os.Getwd()
-	} else {
-		return c.BossHome()
-	}
-}
-
-func (c *Configuration) BossHome() (string, error) {
-	homeDir := os.Getenv("BOSS_HOME")
-	if homeDir == "" {
-		systemHome, err := homedir.Dir()
-		homeDir = systemHome
+	if c.Global {
+		dir := os.Getenv("BOSS_HOME")
+		if dir != "" {
+			return dir, nil
+		}
+		userHome, err := homedir.Dir()
 		if err != nil {
 			return "", err
 		}
-
-		homeDir = filepath.FromSlash(homeDir)
+		return filepath.Join(userHome, ".boss"), nil
 	}
-	return filepath.Join(homeDir, ".boss"), nil
+	return os.Getwd()
 }

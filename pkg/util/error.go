@@ -60,7 +60,6 @@ func checkError(err error, handleErr func(error)) bool {
 	if err == nil {
 		return false
 	}
-
 	handleErr(err)
 	return true
 }

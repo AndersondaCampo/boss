@@ -40,6 +40,7 @@ func initalizePackage(config *configuration.Configuration, quiet bool) error {
 	if err != nil {
 		return err
 	}
+
 	var finalFile = filepath.Join(wd, "boss.json")
 
 	if stat, err := os.Stat(finalFile); err == nil && !stat.IsDir() {

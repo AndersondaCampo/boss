@@ -27,8 +27,8 @@ func MakeBossPackage() *BossPackage {
 	}
 }
 
-// LoadFile open a boss.json
-func LoadFile(bossPath string) (*BossPackage, error) {
+// LoadPackage open a boss.json
+func LoadPackage(bossPath string) (*BossPackage, error) {
 	buf, err := ioutil.ReadFile(bossPath)
 	if err != nil {
 		return nil, err
