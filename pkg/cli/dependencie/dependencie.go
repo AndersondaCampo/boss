@@ -1,6 +1,7 @@
 package dependencie
 
 import (
+	"github.com/hashload/boss/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -24,13 +25,14 @@ func NewCmdDependencie() *cobra.Command {
   List package dependencies with version control:
   boss dependencies <pkg> --version`,
 		Run: func(cmd *cobra.Command, args []string) {
-			printDependencies(&version)
+			err := printDependencies(version)
+			util.CheckErr(err)
 		},
 	}
 	cmd.Flags().BoolVarP(&version, "version", "v", false, "show dependency version")
 	return cmd
 }
 
-func printDependencies(version *bool) {
-
+func printDependencies(version bool) error {
+	return nil
 }

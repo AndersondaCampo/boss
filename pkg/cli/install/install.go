@@ -2,7 +2,6 @@ package install
 
 import (
 	"github.com/hashload/boss/internal/pkg/configuration"
-	"github.com/hashload/boss/internal/pkg/install"
 	"github.com/hashload/boss/pkg/util"
 	"github.com/spf13/cobra"
 )
@@ -23,14 +22,14 @@ func NewCmdInstall(config *configuration.Configuration) *cobra.Command {
   Install a dependency without add it from the boss.json file:
   boss install <pkg> --no-save`,
 		Run: func(cmd *cobra.Command, args []string) {
-			installNewDependency(config, noSave)
+			err := installDependency(config, noSave)
+			util.CheckErr(err)
 		},
 	}
 	cmd.Flags().BoolVar(&noSave, "no-save", false, "prevents saving to `dependencies`")
 	return cmd
 }
 
-func installNewDependency(config *configuration.Configuration, noSave bool) {
-	err := install.InstallDependency(config, noSave)
-	util.CheckErr(err)
+func installDependency(config *configuration.Configuration, noSave bool) error {
+	return nil
 }

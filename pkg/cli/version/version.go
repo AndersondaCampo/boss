@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashload/boss/internal/pkg/configuration"
-	"github.com/hashload/boss/internal/version"
+	"github.com/hashload/boss/internal/pkg/models"
 	"github.com/spf13/cobra"
 )
 
@@ -23,7 +23,7 @@ func NewCmdVersion(config *configuration.Configuration) *cobra.Command {
 }
 
 func printVersion() {
-	v := version.Get()
+	v := models.MakeBossVersion()
 	fmt.Println("Version:", v.Version)
 	fmt.Println("Git commit:", v.GitCommit)
 	fmt.Println("Git tree state:", v.GitTreeState)

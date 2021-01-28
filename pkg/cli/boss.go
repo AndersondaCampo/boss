@@ -43,8 +43,8 @@ func InitializeBossCommandLine(name string) *cobra.Command {
 	root.AddCommand(outdated.NewCmdOutdated())
 	root.AddCommand(owner.NewCmdOwner())
 	root.AddCommand(repo.NewCmdRepo())
-	root.AddCommand(uninstall.NewCmdUnstall())
-	root.AddCommand(update.NewCmdUpdate())
+	root.AddCommand(uninstall.NewCmdUnstall(config))
+	root.AddCommand(update.NewCmdUpdate(config))
 	root.AddCommand(upgrade.NewCmdUpgrade())
 	root.AddCommand(version.NewCmdVersion(config))
 

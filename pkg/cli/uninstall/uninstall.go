@@ -1,11 +1,13 @@
 package uninstall
 
 import (
+	"github.com/hashload/boss/internal/pkg/configuration"
+	"github.com/hashload/boss/pkg/util"
 	"github.com/spf13/cobra"
 )
 
 // NewCmdUnstall add the command line uninstall
-func NewCmdUnstall() *cobra.Command {
+func NewCmdUnstall(config *configuration.Configuration) *cobra.Command {
 	var noSave bool
 	cmd := &cobra.Command{
 		Use:     "uninstall",
@@ -18,13 +20,14 @@ func NewCmdUnstall() *cobra.Command {
   Uninstall a package without removing it from the boss.json file:
   boss uninstall <pkg> --no-save`,
 		Run: func(cmd *cobra.Command, args []string) {
-			uninstallDependency(&noSave)
+			err := uninstallDependency(config, noSave)
+			util.CheckErr(err)
 		},
 	}
 	cmd.Flags().BoolVar(&noSave, "no-save", false, "package will not be removed from your boss.json file")
 	return cmd
 }
 
-func uninstallDependency(noSave *bool) {
-
+func uninstallDependency(config *configuration.Configuration, noSave bool) error {
+	return nil
 }

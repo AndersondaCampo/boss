@@ -1,6 +1,9 @@
 package logout
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/hashload/boss/pkg/util"
+	"github.com/spf13/cobra"
+)
 
 // NewCmdLogout add the command line logout
 func NewCmdLogout() *cobra.Command {
@@ -10,11 +13,12 @@ func NewCmdLogout() *cobra.Command {
 		Example: `  Remove a registry user account:
   boss logout <repo>`,
 		Run: func(cmd *cobra.Command, args []string) {
-			logout()
+			err := logout()
+			util.CheckErr(err)
 		},
 	}
 }
 
-func logout() {
-
+func logout() error {
+	return nil
 }

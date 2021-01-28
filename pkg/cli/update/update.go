@@ -1,11 +1,13 @@
 package update
 
 import (
+	"github.com/hashload/boss/internal/pkg/configuration"
+	"github.com/hashload/boss/pkg/util"
 	"github.com/spf13/cobra"
 )
 
 // NewCmdUpdate add the command line update
-func NewCmdUpdate() *cobra.Command {
+func NewCmdUpdate(config *configuration.Configuration) *cobra.Command {
 	var noSave bool
 	cmd := &cobra.Command{
 		Use:     "update",
@@ -20,13 +22,14 @@ func NewCmdUpdate() *cobra.Command {
   Update a package without update it from the boss.json file:
   boss update <pkg> --no-save`,
 		Run: func(cmd *cobra.Command, args []string) {
-			updateDependencies()
+			err := updateDependencies(config, noSave)
+			util.CheckErr(err)
 		},
 	}
 	cmd.Flags().BoolVar(&noSave, "no-save", false, "does not update the dependency version in the boss.json file")
 	return cmd
 }
 
-func updateDependencies() {
-
+func updateDependencies(config *configuration.Configuration, noSave bool) error {
+	return nil
 }

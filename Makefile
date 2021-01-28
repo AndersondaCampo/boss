@@ -31,7 +31,7 @@ endif
 BINARY_VERSION ?= "unreleased"
 
 ifneq ($(BINARY_VERSION),)
-	LDFLAGS += -X github.com/hashload/boss/internal/version.version=${BINARY_VERSION}
+	LDFLAGS += -X github.com/hashload/boss/internal/pkg/models/version.version=${BINARY_VERSION}
 endif
 
 VERSION_METADATA = unreleased
@@ -39,9 +39,9 @@ ifneq ($(GIT_TAG),)
 	VERSION_METADATA =
 endif
 
-LDFLAGS += -X github.com/hashload/boss/internal/version.metadata=${VERSION_METADATA}
-LDFLAGS += -X github.com/hashload/boss/internal/version.gitCommit=${GIT_COMMIT}
-LDFLAGS += -X github.com/hashload/boss/internal/version.gitTreeState=${GIT_DIRTY}
+LDFLAGS += -X github.com/hashload/boss/internal/pkg/models/version.metadata=${VERSION_METADATA}
+LDFLAGS += -X github.com/hashload/boss/internal/pkg/models/version.gitCommit=${GIT_COMMIT}
+LDFLAGS += -X github.com/hashload/boss/internal/pkg/models/version.gitTreeState=${GIT_DIRTY}
 .PHONY: all
 run:
 	@GO111MODULE=on go run . $(word 2, $(MAKECMDGOALS) )

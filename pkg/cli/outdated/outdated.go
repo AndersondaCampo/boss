@@ -1,6 +1,9 @@
 package outdated
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/hashload/boss/pkg/util"
+	"github.com/spf13/cobra"
+)
 
 // NewCmdOutdated add the command line outdated
 func NewCmdOutdated() *cobra.Command {
@@ -13,11 +16,12 @@ func NewCmdOutdated() *cobra.Command {
   Check package outdated:
   boss outdated <pkg>`,
 		Run: func(cmd *cobra.Command, args []string) {
-			listAllPackagesOutdated()
+			err := listAllPackagesOutdated()
+			util.CheckErr(err)
 		},
 	}
 }
 
-func listAllPackagesOutdated() {
-
+func listAllPackagesOutdated() error {
+	return nil
 }

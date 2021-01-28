@@ -1,6 +1,7 @@
 package bug
 
 import (
+	"github.com/hashload/boss/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -18,13 +19,14 @@ func NewCmdBug() *cobra.Command {
   Print package bugs in the browser:
   boss bugs <pkg> --browser`,
 		Run: func(cmd *cobra.Command, args []string) {
-			printBugs(&browser)
+			err := printBugs(browser)
+			util.CheckErr(err)
 		},
 	}
 	cmd.Flags().BoolVarP(&browser, "browser", "b", false, "print to the default browser")
 	return cmd
 }
 
-func printBugs(browser *bool) {
-
+func printBugs(browser bool) error {
+	return nil
 }

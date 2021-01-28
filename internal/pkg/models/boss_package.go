@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// BossPackage is a model of boss.json
 type BossPackage struct {
 	Name         string            `json:"name"`
 	Description  string            `json:"description"`
@@ -17,6 +18,7 @@ type BossPackage struct {
 	Dependencies map[string]string `json:"dependencies"`
 }
 
+// MakeBossPackage create a new instance of BossPackage
 func MakeBossPackage() *BossPackage {
 	return &BossPackage{
 		Scripts:      make(map[string]string),
@@ -25,27 +27,25 @@ func MakeBossPackage() *BossPackage {
 	}
 }
 
+// LoadFile open a boss.json
 func LoadFile(bossPath string) (*BossPackage, error) {
 	buf, err := ioutil.ReadFile(bossPath)
 	if err != nil {
 		return nil, err
 	}
-
 	var bossPackage = MakeBossPackage()
-
 	err = json.Unmarshal(buf, &bossPackage)
 	if err != nil {
 		return nil, err
-	} else {
-		return bossPackage, nil
 	}
+	return bossPackage, nil
 }
 
+// SaveToFile save changes of boss.json file
 func (b *BossPackage) SaveToFile(bossPath string) error {
 	buf, err := json.MarshalIndent(b, "", "  ")
 	if err != nil {
 		return err
 	}
-
 	return ioutil.WriteFile(bossPath, buf, os.ModePerm)
 }

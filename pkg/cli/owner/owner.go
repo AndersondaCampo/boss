@@ -1,6 +1,7 @@
 package owner
 
 import (
+	"github.com/hashload/boss/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -18,12 +19,13 @@ rm: Remove a user from the package owner list. This immediately revokes their pr
   boss owner rm <user>
   boss owner ls`,
 		Run: func(cmd *cobra.Command, args []string) {
-			manageOwners()
+			err := manageOwners()
+			util.CheckErr(err)
 		},
 	}
 	return cmd
 }
 
-func manageOwners() {
-
+func manageOwners() error {
+	return nil
 }

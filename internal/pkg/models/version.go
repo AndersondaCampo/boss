@@ -1,4 +1,4 @@
-package version
+package models
 
 import (
 	"flag"
@@ -6,8 +6,7 @@ import (
 )
 
 var (
-	version = "v3.0.0"
-
+	version      = "v3.0.0"
 	metadata     = ""
 	gitCommit    = ""
 	gitTreeState = ""
@@ -25,26 +24,23 @@ type BuildInfo struct {
 	GoVersion string `json:"go_version,omitempty"`
 }
 
-// GetVersion returning version of boss
-func GetVersion() string {
+func getVersion() string {
 	if metadata == "" {
 		return version
 	}
 	return version + "+" + metadata
 }
 
-// Get returns build info
-func Get() BuildInfo {
+// MakeBossVersion return boss version info
+func MakeBossVersion() BuildInfo {
 	v := BuildInfo{
-		Version:      GetVersion(),
+		Version:      getVersion(),
 		GitCommit:    gitCommit,
 		GitTreeState: gitTreeState,
 		GoVersion:    runtime.Version(),
 	}
-
 	if flag.Lookup("test.v") != nil {
 		v.GoVersion = ""
 	}
-
 	return v
 }

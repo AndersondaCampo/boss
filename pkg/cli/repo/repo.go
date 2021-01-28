@@ -1,6 +1,9 @@
 package repo
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/hashload/boss/pkg/util"
+	"github.com/spf13/cobra"
+)
 
 // NewCmdRepo add the command line repo
 func NewCmdRepo() *cobra.Command {
@@ -10,11 +13,12 @@ func NewCmdRepo() *cobra.Command {
 		Example: `  Open a package:
   boss repo <pkg>`,
 		Run: func(cmd *cobra.Command, args []string) {
-			openRepo()
+			err := openRepo()
+			util.CheckErr(err)
 		},
 	}
 }
 
-func openRepo() {
-
+func openRepo() error {
+	return nil
 }

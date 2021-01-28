@@ -1,6 +1,7 @@
 package login
 
 import (
+	"github.com/hashload/boss/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -13,11 +14,12 @@ func NewCmdLogin() *cobra.Command {
   boss login <repo>`,
 		Aliases: []string{"adduser", "add-user"},
 		Run: func(cmd *cobra.Command, args []string) {
-			login()
+			err := login()
+			util.CheckErr(err)
 		},
 	}
 }
 
-func login() {
-
+func login() error {
+	return nil
 }

@@ -3,6 +3,7 @@ module github.com/hashload/boss
 go 1.15
 
 require (
+	github.com/gogo/protobuf v1.2.1
 	github.com/manifoldco/promptui v0.8.0
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // indirect
 	github.com/mitchellh/go-homedir v1.1.0

@@ -1,6 +1,7 @@
 package upgrade
 
 import (
+	"github.com/hashload/boss/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -16,13 +17,14 @@ func NewCmdUpgrade() *cobra.Command {
   Upgrade boss with pre-release:
   boss upgrade --dev`,
 		Run: func(cmd *cobra.Command, args []string) {
-			upgradeBoss(&preRelease)
+			err := upgradeBoss(preRelease)
+			util.CheckErr(err)
 		},
 	}
 	cmd.Flags().BoolVar(&preRelease, "dev", false, "pre-release")
 	return cmd
 }
 
-func upgradeBoss(preRelease *bool) {
-
+func upgradeBoss(preRelease bool) error {
+	return nil
 }
